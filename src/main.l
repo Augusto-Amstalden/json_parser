@@ -9,10 +9,6 @@ void yyerror(char *);
 
 %%
 
-[\0] {
-  return EOFILE;
-}
-
 [\[] {
   return '[';
 }
@@ -37,17 +33,19 @@ void yyerror(char *);
   return ',';
 }
 
-[0-9]+ {
+[0-9]+[\.]*[0-9]* {
   return INT;
 }
 
-["].+["] {
+["][^"]+["] {
   return STR;
 }
 
 [[:space:]]+ {}
 
 [\n] {}
+
+. {}
 
 %%
 

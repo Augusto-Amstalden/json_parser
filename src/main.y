@@ -8,12 +8,12 @@ int yylex(void);
 
 %}
 
-%token '{' '}' INT STR ':' ',' '[' ']' EOFILE
+%token '{' '}' INT STR ':' ',' '[' ']'
 
 %%
 
 ARQUIVO:
-        JSON EOFILE { printf("VALIDO"); }
+        JSON { printf("VALIDO\n"); }
         ;
 
 JSON:
@@ -46,6 +46,7 @@ ELEMENTO:
         INT {}
         | STR {}
         | ELEMENTO ',' ELEMENTO {}
+        | LISTA
         ;
 
 %%
